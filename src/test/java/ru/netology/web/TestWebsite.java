@@ -1,9 +1,6 @@
 package ru.netology.web;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,10 +9,20 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
+//import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+
+
 
 class TestWebsite {
     private WebDriver driver;
@@ -23,6 +30,7 @@ class TestWebsite {
     @BeforeAll
     public static void setupAll() {
         WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromiumdriver().setup();
     }
 
     @BeforeEach
@@ -44,8 +52,8 @@ class TestWebsite {
 
     @Test
     public void shouldBeFailedIncorrectNameInput() {
-        driver.findElement(By.cssSelector("[data-test-id='name']")).sendKeys();
-        driver.findElement(By.cssSelector("[data-test-id='phone']")).sendKeys();
+        driver.findElement(By.cssSelector("[data-test-id='name']")).sendKeys("Смирнов Иван");
+        driver.findElement(By.cssSelector("[data-test-id='phone']")).sendKeys("+79001234567");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
         var actualTextElement = driver.findElement(By.cssSelector("[data-test-id=order-success]"));
