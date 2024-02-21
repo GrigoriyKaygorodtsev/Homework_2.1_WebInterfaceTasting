@@ -1,6 +1,12 @@
 package ru.netology.web;
 
 
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,28 +16,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 
-
-
-class TestWebsite {
+public class TestWebsite {
     private WebDriver driver;
 
     @BeforeAll
-    public static void setupAll() {
+    static void setupAll() {
         WebDriverManager.chromedriver().setup();
         WebDriverManager.chromiumdriver().setup();
     }
 
     @BeforeEach
-   public void beforeEach() {
+    public void beforeEach() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
@@ -41,8 +39,9 @@ class TestWebsite {
 
     }
 
+
     @AfterEach
-    private void afterEach() {
+    public void afterEach() {
         driver.quit();
         driver = null;
     }
@@ -59,10 +58,11 @@ class TestWebsite {
         //assertTrue(actualTextElement.isDisplayed());
 
     }
-
-
-
 }
+
+
+
+
 
 
 
