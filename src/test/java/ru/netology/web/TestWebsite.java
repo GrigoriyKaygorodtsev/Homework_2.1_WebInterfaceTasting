@@ -25,7 +25,7 @@ public class TestWebsite {
     @BeforeAll
     static void setupAll() {
         WebDriverManager.chromedriver().setup();
-        WebDriverManager.chromiumdriver().setup();
+
     }
 
     @BeforeEach
@@ -48,8 +48,8 @@ public class TestWebsite {
 
     @Test
     public void shouldBeFailedIncorrectNameInput() {
-        driver.findElement(By.cssSelector("[data-test-id='name']")).sendKeys("Смирнов Иван");
-        driver.findElement(By.cssSelector("[data-test-id='phone']")).sendKeys("+79001234567");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Смирнов Иван");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79001234567");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
         var actualTextElement = driver.findElement(By.cssSelector("[data-test-id=order-success]"));
